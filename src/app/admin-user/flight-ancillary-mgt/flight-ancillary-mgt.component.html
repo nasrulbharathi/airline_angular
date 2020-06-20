@@ -1,0 +1,70 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <form class="example-form">
+        <div>
+            <mat-form-field class="example-full-width">
+                <mat-label>Select Flight</mat-label>
+                <mat-select (selectionChange) = "loadAncillaryDetails($event.value)">
+                    <mat-option *ngFor="let flight of flights" [value]="flight">
+                        {{ flight }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-slide-toggle
+              
+                class="example-full-width"
+                [color]="'accent'"
+                [checked]="isAncillaryItem"
+                (toggleChange) = ancillaryToggle($event)>
+            Add Ancillary Items for this flight
+            </mat-slide-toggle> 
+        </div>
+        <div *ngIf = "isAncillaryItem">
+            <ar-dual-list [source] = "dualListAncillarySource" 
+                          [destination] = "dualListAncillaryDestination" 
+                          (destinationChange) = "destinationAncillaryData($event)"
+                          class="example-full-width">
+            </ar-dual-list>
+        </div>
+        <div>
+            <mat-slide-toggle
+                class="example-full-width"
+                [color]="'primary'"
+                [checked]="isMeal"
+                (toggleChange) = mealToggle($event)>
+            Add Meals For this Flight
+            </mat-slide-toggle> 
+        </div>
+        <div *ngIf = "isMeal">
+                <ar-dual-list   [source] = "dualListMealSource" 
+                                [destination] = "dualListMealDestination"
+                                (destinationChange) = "destinationMealData($event)"
+                                class="example-full-width">
+                </ar-dual-list>
+        </div>
+        <div>
+            <mat-slide-toggle
+                class="example-full-width"
+                [color]="'primary'"
+                [checked]="isShoppingItem"
+                class="example-full-width"
+                (toggleChange) = shoppingToggle($event)>
+            Add Shopping Items for this Flight
+            </mat-slide-toggle>
+        </div>
+        <div *ngIf = "isShoppingItem">
+                <ar-dual-list [source] = "dualListShoppingSource" 
+                                [destination] = "dualListShoppingDestination"
+                                class="example-full-width"
+                                (destinationChange) = "destinationShoppingData($event)">
+                </ar-dual-list>
+        </div>
+    </form>
+    <button  mat-raised-button
+             class="btn-block btn-space" 
+             color="primary"
+             (click)="onSubmit()">
+             Submit
+    </button>
+</div>

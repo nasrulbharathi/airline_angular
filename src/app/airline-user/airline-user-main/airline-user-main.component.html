@@ -1,0 +1,19 @@
+<ar-sidenav [contentToolbarHeading] = "airlineUserMainConfigService.toolbarHeading"
+            [sideNaveList] = "airlineUserMainConfigService.sideNavItems"
+            [role]= "role"
+            (iconEvent)= "emitIconValue($event)">
+            <mat-card>
+                <mat-card-header>
+                    <div *ngIf = "(iconValue.icon == airlineUserMainConfigService.sideNavItems[0].icon)" 
+                    class="passanger-image" mat-card-avatar> </div>
+                    <div *ngIf = "(iconValue.icon == airlineUserMainConfigService.sideNavItems[1].icon)" 
+                    class="flight-image" mat-card-avatar></div>
+                    <mat-card-title>
+                    <h2>{{ iconValue.name }}</h2>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <router-outlet></router-outlet>
+                </mat-card-content>
+            </mat-card>
+</ar-sidenav>

@@ -1,0 +1,25 @@
+<mat-sidenav-container class="app-sidenav-container">
+    <mat-sidenav #sidenav mode="side" class="app-sidenav mat-elevation-z10"
+                 [opened]="!isScreenSmall()"
+                 [mode]="isScreenSmall() ? 'over' : 'side'">
+            <mat-toolbar color="primary">
+                            {{role | uppercase}}
+            </mat-toolbar>
+            <mat-nav-list>
+                <mat-list-item *ngFor="let item of sideNaveList">
+                    <a matLine [routerLink]="['/', role, item.link]" (click)="iconEmit(item)">
+                        <i class="material-icons">{{ item.icon }} </i> {{ item.name }}
+                    </a>
+                </mat-list-item>
+            </mat-nav-list>
+    </mat-sidenav>      
+    <mat-sidenav-content>
+            <ar-toolbar [title] = "contentToolbarHeading" 
+                        [displayRole] = "role"
+                        (emitSideNavAction)="sidenav.toggle()">
+            </ar-toolbar>
+            <div class="wrapper">
+                <ng-content></ng-content>
+            </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

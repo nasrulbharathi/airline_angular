@@ -1,0 +1,19 @@
+<div class="container">
+  
+  <form class="mat-dialog-content" #formControl="ngForm">
+
+      <ar-seat-map [flightName] = "data.formData.flightName"
+                   [passangerDataofFlight]= "data.formData.passangerDataofFlight"
+                   [selectedPassangerData]= "data.formData.selectedPassangerData"
+                   [config] = "data.config"
+                   (emitSeats) = "emitSeats($event)">
+      </ar-seat-map>
+  </form>
+
+  <div mat-dialog-actions>
+      <button *ngIf = "checkInButton" mat-button [disabled]="!formControl.valid" [mat-dialog-close]="result">Check In</button>
+      <button *ngIf = "checkOutButton" mat-button [disabled]="!formControl.valid" [mat-dialog-close]="result">Check Out</button>
+      <button *ngIf = "editButton" mat-button [disabled]="!formControl.valid" [mat-dialog-close]="result">Modify</button>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+  </div>
+</div>

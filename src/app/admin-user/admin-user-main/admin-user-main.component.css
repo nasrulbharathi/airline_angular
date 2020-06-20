@@ -1,0 +1,14 @@
+.passanger-image {
+    background-image: url('https://cdn.businesstraveller.com/wp-content/uploads/fly-images/807449/Happy-passenger-e1494847969809-360x202.jpg');
+    background-size: cover;
+  }
+
+  .flight-image {
+    background-image: url('https://i.cbc.ca/1.3974118.1524078803!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/air-canada-plane.jpg');
+    background-size: cover;
+  }
+
+  .ancillary-image {
+    background-image: url('https://cdn.blueswandaily.com//2019/08/AncillarySeat-1963x1200.jpg');
+    background-size: cover;
+  }

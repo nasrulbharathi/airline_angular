@@ -1,0 +1,38 @@
+<div class="container">
+  <h3 mat-dialog-title> {{ dialogHeading }} </h3>
+
+  <form class="mat-dialog-content" #formControl="ngForm">
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <textarea matInput #input class="form-control" placeholder="name" [(ngModel)]="result.name" name="name" required ></textarea>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+        <mat-form-field color="accent">
+          <textarea matInput #input class="form-control" placeholder="passportNumber" [(ngModel)]="result.passportNumber" name="passportNumber" required ></textarea>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form">
+          <mat-form-field color="accent">
+            <textarea matInput #input class="form-control" placeholder="address" [(ngModel)]="result.address" name="address" required ></textarea>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form">
+          <mat-form-field color="accent">
+            <textarea matInput #input class="form-control" placeholder="dateOfBirth" [(ngModel)]="result.dateOfBirth" name="dateOfBirth" required ></textarea>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+  </form>
+  <div mat-dialog-actions>
+    <button mat-button [disabled]="!formControl.valid" [mat-dialog-close]="result">Submit</button>
+    <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+  </div>
+</div>

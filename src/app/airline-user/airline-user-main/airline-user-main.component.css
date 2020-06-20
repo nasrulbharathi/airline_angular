@@ -1,0 +1,9 @@
+.passanger-image {
+  background-image: url('https://cdn.businesstraveller.com/wp-content/uploads/fly-images/807449/Happy-passenger-e1494847969809-360x202.jpg');
+  background-size: cover;
+}
+
+.flight-image {
+  background-image: url('https://airlinegeeks.com/wp-content/uploads/2018/09/AA-B789-LAX-William-Derrickson-1-678x381.jpg');
+  background-size: cover;
+}

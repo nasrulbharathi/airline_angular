@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+      <ng-container *ngIf = "isLogged">
+          <button class="sidenav-toggle" mat-button (click)="emitSideNavEvent()">
+            <mat-icon>menu</mat-icon>
+          </button>
+      </ng-container>
+      <span> {{ title }}</span>
+      <ng-container *ngIf = "isLogged">
+          <span class="spacer"></span>
+          <button mat-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="logOut()">Logout</button>
+          </mat-menu>
+      </ng-container>
+  </mat-toolbar-row>
+</mat-toolbar>

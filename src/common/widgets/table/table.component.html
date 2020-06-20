@@ -1,0 +1,48 @@
+<mat-form-field class = 'fliter_class'>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+    
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container *ngFor = "let item of columHeaders" [matColumnDef]="(item !== 'actions' ? item : '')">
+        <mat-header-cell *matHeaderCellDef> {{ item }} </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ isObject(element[item])  }}  </mat-cell>
+    </ng-container>
+
+        <!-- actions -->
+    <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+            <button *ngIf = "crudAndFilterData.isAdd" mat-icon-button color="primary" 
+            (click)="crudAction('add')">
+            <mat-icon>add</mat-icon>
+            </button>
+        </mat-header-cell>
+    
+        <mat-cell *matCellDef="let row; let i=index;">
+            <button *ngIf = "crudAndFilterData.isEdit" mat-icon-button color="primary" 
+                    (click)="crudAction('edit', i, row)">
+                        <mat-icon aria-label="Edit">edit</mat-icon>
+            </button>
+    
+            <button  *ngIf = "crudAndFilterData.isDelete" mat-icon-button color="primary" 
+                    (click)="crudAction('delete', i, row)">
+                        <mat-icon aria-label="Delete">delete</mat-icon>
+            </button>
+
+            <button  *ngIf = "crudAndFilterData.isCheckIn && !row.isCheckedIn" mat-icon-button color="primary" 
+                    (click)="crudAction('checkIn', i, row)">
+                        <mat-icon aria-label="check In">add_circle_outline</mat-icon>
+            </button>
+
+            <button  *ngIf = "crudAndFilterData.isCheckIn && row.isCheckedIn" mat-icon-button color="primary" 
+                    (click)="crudAction('checkOut', i, row)">
+                        <mat-icon aria-label="check Out">remove_circle_outine</mat-icon>
+            </button>
+        </mat-cell>
+
+    </ng-container>
+
+    
+    <mat-header-row *matHeaderRowDef="columHeaders"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columHeaders;"></mat-row>
+</mat-table>
+    

@@ -1,0 +1,16 @@
+<div>
+    <mat-form-field>
+        <mat-label>Select Flight</mat-label>
+        <mat-select (selectionChange) = "loadPassangerDetailsPerFlight($event.value)">
+            <mat-option *ngFor="let flight of flights" [value]="flight">
+                {{ flight }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+
+<ar-table [columHeaders] = "userCheckInConfigService.columHeaders"
+          [tableData] = "tableData"
+          [crudAndFilterData] = "userCheckInConfigService.crudAndFilterData"
+          (emitCrudAction) = performCrudAction($event)>
+</ar-table>

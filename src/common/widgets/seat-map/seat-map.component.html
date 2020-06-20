@@ -1,0 +1,69 @@
+<div style="text-align:center">
+    <h3>
+      {{ flightName }}
+    </h3>
+</div>
+<div class = "col-lg-12 seat-container">
+    <div *ngFor="let seatrow of seatMap2">
+        <div class="col-12 pricing-label"
+          *ngIf="seatMapConfigService.seatChartConfig?.showRowWisePricing && 
+            seatrow.seatPricingInformation !== ''">
+          {{seatrow.seatPricingInformation}}
+        </div>      
+        <div class="seatrow container">
+            <div *ngIf="seatMapConfigService.seatChartConfig?.showRowsLabel">
+                <div class="row-label"> {{seatrow.seatRowLabel}} </div>
+            </div> 
+
+            <div *ngFor="let seatobj of seatrow.seats">
+  
+                <div class="seat-item seat-space" 
+                     style="color:white ; background-color:white" 
+                     *ngIf="seatobj.seatLabel == ''">
+                </div>
+  
+                <div [ngClass]= "{ 'seat-item' : true , 
+                                   'seat-available' : seatobj.status == seatLocalEnumStatus.available,
+                                   'seat-booked' : seatobj.status == seatLocalEnumStatus.booked,
+                                   'seat-unavailable' : seatobj.status == seatLocalEnumStatus.unavailable, 
+                                   'seat-booked-with-child' : seatobj.status == seatLocalEnumStatus.bookedwithchild, 
+                                   'seat-booked-with-wheel' : seatobj.status == seatLocalEnumStatus.bookedwithwheel,
+                                   'seat-specialMeals': seatobj.status == seatLocalEnumStatus.specialMeals,
+                                   'seat-ordinaryMeals': seatobj.status == seatLocalEnumStatus.ordinaryMeals,
+                                   'seat-marked': seatobj.status == seatLocalEnumStatus.marked
+                                  }"
+                      (click)="selectSeat(seatobj)"
+                      *ngIf="((seatobj.status == seatLocalEnumStatus.available || 
+                               seatobj.status == seatLocalEnumStatus.booked || 
+                               seatobj.status == seatLocalEnumStatus.bookedwithchild || 
+                               seatobj.status == seatLocalEnumStatus.bookedwithwheel ||
+                               seatobj.status == seatLocalEnumStatus.specialMeals ||
+                               seatobj.status == seatLocalEnumStatus.ordinaryMeals ||
+                               seatobj.status == seatLocalEnumStatus.marked) && 
+                               seatobj.seatLabel != '')">
+                  {{seatobj.seatNo}}
+                </div>
+
+                <div [ngClass] = "{ 'seat-item' : true , 'seat-unavailable' : true }"
+                                  *ngIf="seatobj.status == seatLocalEnumStatus.unavailable && seatobj.seatLabel != ''">
+                                  {{seatobj.seatNo}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class= "row m-4">
+        <div *ngFor = "let legend of seatLegends">
+            <span [ngClass]= "{ 'seat-item' : true, 
+                               'seat-available' : legend == seatLocalEnumStatus.available,
+                               'seat-booked' : legend == seatLocalEnumStatus.booked,
+                               'seat-booked-with-child' : legend == seatLocalEnumStatus.bookedwithchild, 
+                               'seat-booked-with-wheel' : legend == seatLocalEnumStatus.bookedwithwheel,
+                               'seat-marked' : legend == seatLocalEnumStatus.marked,
+                               'seat-specialMeals': legend == seatLocalEnumStatus.specialMeals,
+                               'seat-ordinaryMeals': legend == seatLocalEnumStatus.ordinaryMeals
+                            }">
+            </span>
+             {{ legend }}
+          </div>
+    </div>
+</div>

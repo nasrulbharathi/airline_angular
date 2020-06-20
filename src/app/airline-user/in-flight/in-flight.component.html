@@ -1,0 +1,59 @@
+<div>
+    <mat-form-field>
+        <mat-label>Select Flight</mat-label>
+        <mat-select (selectionChange) = "loadPassangerDetailsPerFlight($event.value)">
+            <mat-option *ngFor="let flight of flights" [value]="flight">
+                {{ flight }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div *ngIf = "isFlightSelected">
+    <mat-tab-group #tabGroup 
+                (selectedTabChange)= "tabChange($event)">
+        <mat-tab label="Flight Details"> 
+            <ng-template matTabContent>
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                        <ng-container matColumnDef="contents">
+                            <th mat-header-cell *matHeaderCellDef> Contents </th>
+                            <td mat-cell *matCellDef="let element"> {{element.contents}} </td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="details">
+                            <th mat-header-cell *matHeaderCellDef> Details </th>
+                            <td mat-cell *matCellDef="let element"> 
+                                <ng-container *ngIf = "isArray(element.details)">
+                                    <span *ngFor = "let elm of element.details"  
+                                    class="badge badge-pill badge-info m-1"> {{elm}} </span>
+                                </ng-container>
+                                <ng-container *ngIf = "!isArray(element.details)">
+                                        <span class="badge badge-pill badge-info"> {{element.details}} </span>
+                                </ng-container>
+                            </td>
+                        </ng-container>
+                        
+                        <tr mat-header-row *matHeaderRowDef="displayedFlightColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedFlightColumns;"></tr>
+                    </table>
+            </ng-template>
+        </mat-tab>
+        <mat-tab label="In Flight Meal Details">
+            <ng-template matTabContent>
+                <ar-seat-map [flightName] = "selectedFlight.name" 
+                             [passangerDataofFlight]= "tableData"
+                             [config] = "'inFlight'">
+                </ar-seat-map>
+            </ng-template>
+        </mat-tab>
+        <mat-tab label="In Flight Passanger Details">
+            <ng-template matTabContent>
+                <ar-table [columHeaders] = "inFlightConfigService.columHeaders"
+                          [tableData] = "tableData"
+                          [crudAndFilterData] = "inFlightConfigService.crudAndFilterData"
+                         (emitCrudAction) = performCrudAction($event)>
+                </ar-table>
+            </ng-template>
+        </mat-tab>
+    </mat-tab-group>
+</div>

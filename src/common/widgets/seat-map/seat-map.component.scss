@@ -1,0 +1,135 @@
+$seat-available-bg: white;
+$seat-available-color: #a0a0a0;
+$seat-booked-bg: green;
+$seat-booked-color: white;
+$seat-unavailable-bg: black;
+$seat-unavailable-color: white;
+$seat-booked-child-bg: purple;
+$seat-booked-child-color: white;
+$seat-booked-wheel-bg: orange;
+$seat-booked-wheel-color: white;
+$seat-marked-bg: #7EFF33;
+$seat-marked-color: white;
+$seat-specialMeals-bg: #BC33FF;
+$seat-specialMeals-color: white;
+$seat-ordinaryMeals-bg: #F9FF33;
+$seat-ordinaryMeals-color: white;
+
+
+.seat-container
+{
+    padding: 5% 20%;
+}
+
+.seatrow
+{
+    display: inline-flex;
+}
+
+.pricing-label
+{
+    font-weight: bold;
+    margin: 0px 0px 16px 16px;
+    padding: 0;
+    text-align: left;
+    color: #a0a0a0;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.seat-item
+{
+    height: 27px;
+    width: 27px;
+    line-height: 25px;
+    margin: 3px;
+    border-radius: 7px;
+    font-size: 14px;
+    padding-left: 5px;
+}
+
+.seat-space
+{
+    background-color: white;
+    color:white; 
+    border: 0;
+    cursor: none;
+}
+
+.seat-available
+{
+    color: $seat-available-color;
+    background-color: $seat-available-bg;
+    font-weight: bolder;
+    border: 1px solid $seat-available-color;
+}
+
+.seat-unavailable
+{
+    color: $seat-unavailable-color;
+    background-color: $seat-unavailable-bg;
+    font-weight: bolder;
+    border: 1px solid $seat-unavailable-color;
+}
+
+.seat-booked
+{
+    color: $seat-booked-color;
+    font-weight: bolder;
+    background-color: $seat-booked-bg;
+    border: 1px solid $seat-booked-color;
+}
+
+.seat-booked-with-child
+{
+    color: $seat-booked-child-color;
+    font-weight: bolder;
+    background-color: $seat-booked-child-bg;
+    border: 1px solid $seat-booked-child-color;
+}
+
+.seat-booked-with-wheel
+{
+    color: $seat-booked-wheel-color;
+    font-weight: bolder;
+    background-color: $seat-booked-wheel-bg;
+    border: 1px solid $seat-booked-wheel-color;
+}
+
+.seat-marked
+{
+    color: $seat-marked-color;
+    font-weight: bolder;
+    background-color: $seat-marked-bg;
+    border: 1px solid $seat-marked-color;   
+}
+
+.seat-specialMeals
+{
+    color: $seat-specialMeals-color;
+    font-weight: bolder;
+    background-color: $seat-specialMeals-bg;
+    border: 1px solid $seat-specialMeals-color;
+}
+
+.seat-ordinaryMeals
+{
+    color: $seat-ordinaryMeals-color;
+    font-weight: bolder;
+    background-color: $seat-ordinaryMeals-bg;
+    border: 1px solid $seat-ordinaryMeals-color;
+}
+
+.seat-item:hover
+{
+    cursor: pointer;
+}
+
+.row-label
+{
+    color:black ; 
+    background-color:white;
+    min-width: 20px;
+    font-weight: bolder;
+    line-height: 32px;
+}
+
